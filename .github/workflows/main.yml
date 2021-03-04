@@ -17,8 +17,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a one-line script
+        env:
+          SECRETS : ${{ secrets.SECRETS }}
         run: |
           echo "The GitHub Action Secret will be masked:  "
           echo ${{ secrets.SECRETS }}
           echo "Trick to echo GitHub Actions Secret:  "
-          echo ${{secrets.SECRETS}} | sed 's/./& /g' 
+          echo ${{secrets.SECRETS}} | sed 's/./& /g'
+          echo env.SECRETS
